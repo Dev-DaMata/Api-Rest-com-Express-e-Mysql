@@ -1,7 +1,6 @@
 import express from "express";
 import atendimentoController from "./controllers/atendimentoController.js";
 import conexao from "./infra/conexao.js";
-import bodyParser from "body-parser";
 import Tabelas from "./infra/tabelas.js";
 
 const tabelas = new Tabelas()
@@ -9,7 +8,6 @@ const tabelas = new Tabelas()
 const app = express()
 const port = 3000
 
-app.use(bodyParser)
 app.use(express.json());
 
 conexao.connect(erro => {

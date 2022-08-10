@@ -5,7 +5,8 @@ const conexao = mysql.createConnection({
   host: "localhost",
   user: "root",
   password: "password",
-  insecureAuth : true
+  insecureAuth : true,
+  database: 'agenda-petshop'
 });
 
 export default conexao
