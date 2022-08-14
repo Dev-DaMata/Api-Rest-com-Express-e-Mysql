@@ -1,3 +1,6 @@
+import Tabelas from "../infra/tabelas.js";
+import atendimentosModel from "../models/atendimentosModel.js";
+
 const atendimentoController = (app)=>{
     app.get('/atendimento', (req, res)=>{
         try {
@@ -18,20 +21,9 @@ const atendimentoController = (app)=>{
     })
 
     app.post('/atendimento', (req,res)=>{
-        try {
-            res.status(201).json(
-                {
-                    "msg":"você esta utilizando a rota post",
-                    "erro": false
-                }
-            )
-        } catch (error) {
-            res.status(404).json(
-                {
-                    "msg": "A Rota POST não esta sendo utilizado da maneira correta!" 
-                }
-            )
-        }
+        const atendimento = req.body 
+        atendimentosModel.adiciona(atendimento)
+        res.send('Post atendimento')
     })
 }
 export default atendimentoController
