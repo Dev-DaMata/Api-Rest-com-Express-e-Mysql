@@ -1,5 +1,6 @@
 import conexao from "../infra/conexao.js";
 import moment from "moment";
+import { query } from "express";
 
 class atendimentosModel{
     static adiciona(Atendimento, res){
@@ -44,7 +45,28 @@ class atendimentosModel{
         }
     }
 
-    
+    static lista(res){
+        const sql = 'SELECT * FROM Atendimentos'
+        conexao.query(sql, (erro, resultados)=>{
+            if(erro){
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json(resultados)
+            }
+        })
+    }
+
+    static buscaPorId(id, res){
+        const sql = `SELECT * FROM Atendimentos WHERE id=${id}`
+        conexao.query(sql, (erro, resultado)=>{
+            const atendimento = resultado[0]
+            if (erro) {
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json(atendimento)
+            }
+        })
+    }
 }
 
 export default atendimentosModel

@@ -2,23 +2,14 @@ import Tabelas from "../infra/tabelas.js";
 import atendimentosModel from "../models/atendimentosModel.js";
 
 const atendimentoController = (app)=>{
-    app.get('/atendimento', (req, res)=>{
-        try {
-            res.status(200).json(
-                {
-                    "msg": "deu bom",
-                    "erro": false
-                }
-            )
-        } catch (error) {
-            res.status(404).json(
-                {
-                    "msg": "A Rota POST esta com erro, favor verificar",
-                    "erro": true
-                }
-            )
-        }
-    })
+app.get('/atendimento', (req,res)=>{
+    atendimentosModel.lista(res)
+})
+
+app.get('/atendimento/:id', (req, res)=>{
+    const id = parseInt(req.params.id)
+    atendimentosModel.buscaPorId(id, res)
+})
 
     app.post('/atendimento', (req,res)=>{
         const atendimento = req.body 
