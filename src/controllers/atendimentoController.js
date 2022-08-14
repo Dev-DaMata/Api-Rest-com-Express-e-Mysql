@@ -22,8 +22,7 @@ const atendimentoController = (app)=>{
 
     app.post('/atendimento', (req,res)=>{
         const atendimento = req.body 
-        atendimentosModel.adiciona(atendimento)
-        res.send('Post atendimento')
+        atendimentosModel.adiciona(atendimento, res)
     })
 }
 export default atendimentoController
